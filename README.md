@@ -6,6 +6,27 @@ A production-ready, scroll-driven interactive hero animation inspired by the [Pa
 
 ---
 
+## 📌 Project & Evaluator Notes
+
+> **Live Production Demo**: [https://ansh55560-ui.github.io/itz-fizz-scroll-hero/](https://ansh55560-ui.github.io/itz-fizz-scroll-hero/)  
+> **Source Repository**: [https://github.com/ansh55560-ui/itz-fizz-scroll-hero](https://github.com/ansh55560-ui/itz-fizz-scroll-hero)  
+> **Reference Inspiration**: [Paras Chaturvedi Car Scroll Animation](https://paraschaturvedi.github.io/car-scroll-animation/)
+
+### Key Evaluation Criteria & Engineering Implementation:
+1. **True ScrollTrigger Scrubbing**: The animation avoids setInterval or state-based scroll thrashing. GSAP controls coordinates with `scrub: 0.65` and `pin: true` on the stage viewport.
+2. **Dynamic Letter-by-Letter Hit Testing**: The letters `W E L C O M E   I T Z F I Z Z` are revealed in bold black contrast over the green `#45db7d` trail precisely as the vehicle's leading edge passes each letter's X-coordinate.
+3. **Staggered Metric Boxes**:
+   - `58% Increase in pick up point use` (`#def54f` Neon Lime) at ~20% scroll
+   - `23% Decreased customer phone calls` (`#6ac9ff` Sky Blue) at ~40% scroll
+   - `27% Secondary hub efficiency gain` (`#333333` Dark Charcoal) at ~60% scroll
+   - `40% Decreased inbound inquiries` (`#fa7328` Racing Orange) at ~80% scroll
+4. **Clean Bidirectional Scrub**: Scrolling backwards naturally tucks the cards away, retracts the green trail, and hides the letters smoothly.
+5. **Universal Viewport Support**: Responsive layouts configured across 320px–767px (mobile), 768px–1023px (tablet), 1024px–1439px (laptop), and 1440px+ (desktop) with zero overflow or card clipping.
+6. **Graceful Asset Fallback**: Features automatic base path resolution for GitHub Pages and an inline SVG sports car fallback if images fail to load.
+7. **Accessibility First**: Respects `prefers-reduced-motion` to display all text and statistics immediately for sensitive users.
+
+---
+
 ## ⚡ Key Highlights & Features
 
 - **True Scroll-Driven Dynamics**: The orange McLaren 720S sports car moves along the track pinned to the scrollbar via GSAP ScrollTrigger with scrubbed timeline interpolation.

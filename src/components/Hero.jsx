@@ -256,10 +256,21 @@ export default function Hero() {
         <div className="absolute inset-0 bg-[#cfcfcf] opacity-100 pointer-events-none" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.7)_0%,transparent_75%)] pointer-events-none" />
         
-        {/* Top & Bottom Subdued Track Guidance */}
+        {/* Top & Bottom Subdued Track Guidance with Note */}
         <div className="absolute top-20 left-8 hidden lg:flex items-center gap-3 text-neutral-600 font-mono text-[11px] font-semibold tracking-widest uppercase">
           <span className="w-2 h-2 rounded-full bg-neutral-500" />
           <span>STAGE / 01 — HORIZONTAL VELOCITY</span>
+          <span className="text-neutral-400">|</span>
+          <span className="px-2 py-0.5 rounded-full bg-black/5 border border-black/10 text-neutral-700 font-sans normal-case tracking-normal text-[11px] font-medium flex items-center gap-1.5">
+            <span>📌 Note:</span>
+            <span>Scroll smoothly to steer McLaren & reveal metrics</span>
+          </span>
+        </div>
+
+        {/* Mobile / Tablet Compact Note Pill */}
+        <div className="absolute top-16 left-1/2 -translate-x-1/2 lg:hidden flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/10 backdrop-blur-sm border border-black/10 text-neutral-800 text-[10px] font-semibold tracking-wide">
+          <span>📌 Note:</span>
+          <span>Scroll down to drive & reveal</span>
         </div>
 
         <div className="absolute top-20 right-8 hidden lg:flex items-center gap-2 px-3 py-1 bg-black/5 rounded-full border border-black/10 text-neutral-700 font-mono text-[11px] font-semibold">

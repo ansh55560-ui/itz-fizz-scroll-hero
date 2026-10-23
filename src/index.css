@@ -1,0 +1,327 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-heading: "Space Grotesk", sans-serif;
+    --font-body: "Plus Jakarta Sans", sans-serif;
+    --color-bg: #121212;
+    --color-track-bg: #cfcfcf;
+    --color-road: #1e1e1e;
+    --color-trail: #45db7d;
+    --color-box1: #def54f;
+    --color-box2: #6ac9ff;
+    --color-box3: #333333;
+    --color-box4: #fa7328;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--color-bg);
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-body);
+    background-color: var(--color-bg);
+    color: #ffffff;
+    overflow-x: hidden;
+  }
+}
+
+/* Typography Helpers */
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+/* Track and Stage Container */
+.scroll-hero-section {
+  position: relative;
+  background-color: #121212;
+  width: 100%;
+}
+
+.track-viewport {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #cfcfcf;
+  overflow: hidden;
+}
+
+/* Road Styling */
+.road-container {
+  width: 100vw;
+  height: 200px;
+  background-color: #1e1e1e;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.6), inset 0 -2px 10px rgba(0, 0, 0, 0.6);
+}
+
+@media (min-width: 1536px) {
+  .road-container {
+    height: 230px;
+  }
+}
+
+@media (max-width: 768px) {
+  .road-container {
+    height: 140px;
+  }
+}
+
+/* Road Texture & Centerline */
+.road-texture {
+  position: absolute;
+  inset: 0;
+  opacity: 0.12;
+  background-image: radial-gradient(circle at 50% 50%, #ffffff 1px, transparent 1px);
+  background-size: 8px 8px;
+  pointer-events: none;
+}
+
+.road-curb-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: repeating-linear-gradient(90deg, #ffffff 0, #ffffff 30px, #e11d48 30px, #e11d48 60px);
+  opacity: 0.8;
+  z-index: 15;
+}
+
+.road-curb-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: repeating-linear-gradient(90deg, #ffffff 0, #ffffff 30px, #e11d48 30px, #e11d48 60px);
+  opacity: 0.8;
+  z-index: 15;
+}
+
+/* Green Speed Trail */
+.speed-trail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: #45db7d;
+  z-index: 2;
+  width: 0;
+  will-change: width;
+  box-shadow: 0 0 25px rgba(69, 219, 125, 0.6);
+}
+
+/* Headline Banner Inside Road */
+.welcome-letters-wrapper {
+  position: absolute;
+  left: 3%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  user-select: none;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+@media (min-width: 1280px) {
+  .welcome-letters-wrapper {
+    gap: 0.45rem;
+    left: 4%;
+  }
+}
+
+.welcome-letter {
+  display: inline-block;
+  color: #111111;
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5.8vw, 5.6rem);
+  font-weight: 900;
+  line-height: 1;
+  opacity: 0;
+  letter-spacing: -0.01em;
+  will-change: opacity, transform;
+  transform: translateY(0);
+}
+
+.welcome-letter.space {
+  width: clamp(0.7rem, 2vw, 1.8rem);
+}
+
+/* Car Element */
+.car-actor {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: 100%;
+  width: auto;
+  z-index: 10;
+  will-change: transform;
+  cursor: grab;
+  filter: drop-shadow(0 15px 12px rgba(0, 0, 0, 0.45));
+}
+
+.car-actor img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Stat Box Base Styles */
+.stat-box {
+  opacity: 0;
+  border-radius: 14px;
+  position: absolute;
+  z-index: 8;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 6px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.16), 0 4px 10px rgba(0, 0, 0, 0.08);
+  will-change: transform, opacity;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+  user-select: none;
+}
+
+.stat-box:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 20px 42px rgba(0, 0, 0, 0.22);
+}
+
+.stat-box .num-metric {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3.4vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.stat-box .label-text {
+  font-size: clamp(0.75rem, 0.9vw, 1rem);
+  font-weight: 600;
+  line-height: 1.35;
+  max-width: 190px;
+}
+
+/* Stat Box Specific Variants - Cleared from Navbar */
+.stat-box-1 {
+  background-color: #def54f;
+  color: #111111;
+  padding: clamp(14px, 1.6vw, 24px) clamp(18px, 2vw, 28px);
+  top: clamp(68px, 9vh, 92px);
+  right: clamp(26%, 30vw, 34%);
+}
+
+.stat-box-2 {
+  background-color: #6ac9ff;
+  color: #111111;
+  padding: clamp(14px, 1.6vw, 24px) clamp(18px, 2vw, 28px);
+  bottom: clamp(55px, 8vh, 85px);
+  right: clamp(30%, 34vw, 39%);
+}
+
+.stat-box-3 {
+  background-color: #333333;
+  color: #ffffff;
+  padding: clamp(14px, 1.6vw, 24px) clamp(18px, 2vw, 28px);
+  top: clamp(68px, 9vh, 92px);
+  right: clamp(4%, 7vw, 10%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.stat-box-4 {
+  background-color: #fa7328;
+  color: #111111;
+  padding: clamp(14px, 1.6vw, 24px) clamp(18px, 2vw, 28px);
+  bottom: clamp(55px, 8vh, 85px);
+  right: clamp(5%, 8vw, 11%);
+}
+
+/* Mobile Adjustments for Stats (320px to 768px) */
+@media (max-width: 768px) {
+  .track-viewport {
+    height: 100vh;
+    padding-top: 60px;
+    padding-bottom: 40px;
+  }
+
+  .stat-box {
+    padding: 10px 14px;
+    border-radius: 10px;
+    max-width: 155px;
+  }
+
+  .stat-box .num-metric {
+    font-size: 1.6rem;
+  }
+
+  .stat-box .label-text {
+    font-size: 0.68rem;
+    max-width: 130px;
+  }
+
+  .stat-box-1 {
+    top: 72px;
+    left: 4%;
+    right: auto;
+  }
+
+  .stat-box-3 {
+    top: 72px;
+    right: 4%;
+  }
+
+  .stat-box-2 {
+    bottom: 76px;
+    left: 4%;
+    right: auto;
+  }
+
+  .stat-box-4 {
+    bottom: 76px;
+    right: 4%;
+  }
+}
+
+/* Very Small Mobile (< 400px) */
+@media (max-width: 400px) {
+  .stat-box {
+    padding: 8px 10px;
+    max-width: 135px;
+  }
+
+  .stat-box .num-metric {
+    font-size: 1.35rem;
+  }
+
+  .stat-box .label-text {
+    font-size: 0.62rem;
+  }
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
